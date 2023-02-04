@@ -184,7 +184,7 @@ public class Policy
   
   public double getBmi()
   {
-      return (weight * 703 ) / (height * height) //BMI formula
+      return (weight * 703 ) / (height * height); //BMI formula
   }
   
   /**The getPrice method calculates the insurance price based the policy holder's information
@@ -197,11 +197,13 @@ public class Policy
       if (age > 50) // adding fee for old age
          price += 75;
       
-      if (smokingStatus.equals("smoker") //adding fee for smoking
+      if (smokingStatus.equals("smoker")) //adding fee for smoking
          price += 100;
       
       if (getBmi() > 35) //adding fee for high BMI
-         price += ((getBmi() - 35) * 20) //formula to calculate extra fee
+         price += ((getBmi() - 35) * 20); //formula to calculate extra fee
          
       return price;
+         
   }
+}  
