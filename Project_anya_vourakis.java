@@ -52,8 +52,8 @@ public class Project_anya_vourakis
       System.out.println("Provider Name :" + insurancePolicy.getProvider());
       System.out.println("Policyholder's First Name: " + insurancePolicy.getFirstName());
       System.out.println("Policyholder's Last Name: " + insurancePolicy.getLastName());
-      System.out.println("Policyholder's Age: " + insurancePolicy.getAge());
-      System.out.println("Policyholder's Smoking Status: " + insurancePolicy.getSmokingStatus());
+      System.out.printf("Policyholder's Age: %.0f", insurancePolicy.getAge());
+      System.out.println("\nPolicyholder's Smoking Status: " + insurancePolicy.getSmokingStatus());
       System.out.printf("Policyholder's Height: %.1f inches", insurancePolicy.getHeight());
       System.out.printf("\nPolicyholder's Weight: %.1f pounds", insurancePolicy.getWeight());
       System.out.printf("\nPolicyholder's BMI: %.2f", insurancePolicy.getBmi());

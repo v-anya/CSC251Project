@@ -192,16 +192,23 @@ public class Policy
   
   public double getPrice()
   {
-      double price = 600; //base price for insurance
+      final double BASE_PRICE = 600,
+                   SMOKING_FEE = 100,
+                   BMI_LIMIT = 35,
+                   AGE_LIMIT = 50,
+                   AGE_FEE = 75,
+                   FEE_PER_BMI = 20;
       
-      if (age > 50) // adding fee for old age
-         price += 75;
+      double price = BASE_PRICE; //starting price is set
+      
+      if (age > AGE_LIMIT) // adding fee for old age
+         price += AGE_FEE;
       
       if (smokingStatus.equals("smoker")) //adding fee for smoking
-         price += 100;
+         price += SMOKING_FEE;
       
-      if (getBmi() > 35) //adding fee for high BMI
-         price += ((getBmi() - 35) * 20); //formula to calculate extra fee
+      if (getBmi() > BMI_LIMIT) //adding fee for high BMI
+         price += ((getBmi() - BMI_LIMIT) * FEE_PER_BMI); //formula to calculate extra fee
          
       return price;
          
