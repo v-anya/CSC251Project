@@ -1,12 +1,25 @@
 /**This program will demonstrate the Policy class*/
 
 import java.util.Scanner; //needed to read input
+import java.io.*; //for files
+import java.util.ArrayList; //to use ArrayList
 
 public class Project_anya_vourakis
 {
-   public static void main (String args[])
+   public static void main (String args[]) throws IOException
    {
-      Scanner keyboard = new Scanner(System.in); //creating a Scanner object to read input
+      
+      ArrayList<Policy> policyArray = new ArrayList<>; //create array list for policy objects
+      
+      File policies = new File("PolicyInformation.txt"); //"open" the file
+      
+      if (!policies.exists) //checking that the file exists
+      {
+         System.out.println("The file does not exist. Program terminated.");
+         System.exit(0);
+      }
+      
+      Scanner fileReader = new Scanner(policies); //scanner for input file
       
       String policyNumber, //policy number
              provider,     //name of the provider
@@ -17,32 +30,30 @@ public class Project_anya_vourakis
       double age,           //policy holder's age
              height,        //policy holder's height in inches
              weight;        // policy holder's weight in pounds
+      
+      while (fileReader.hasNext()) //loop while there is data to read
+      {
+      
+      //read and assign data from file
+      policyNumber = fileReader.nextLine();
+      provider = fileReader.nextLine();
+      firstName = fileReader.nextLine();
+      lastName = fileReader.lastName();
+      age = fileReader.nextDouble();
+      fileReader.nextLine(); //clear buffer
+      smokingStatus = fileReader.nextLine();
+      height = fileReader.nextDouble();
+      weight = fileReader.nextDouble();
+      if (fileReader.hasNext) //making sure there are more lines before
+         fileReader.nextLine(); //clear buffer
+      if (fileReader.hasNext) //making sure there are more lines before
+         fileReader.nextLine(); //skip blank line
+       
+      //create policy object in the array with the information  
+      policyArray.add(policyNumber, provider, firstName, lastName, smokingStatus, age, height, weight);
+      }
                  
-      System.out.print("Please enter the Policy Number: "); //getting policy number
-      policyNumber = keyboard.nextLine();
       
-      System.out.print("\nPlease enter the Provider Name: "); //getting provider name
-      provider = keyboard.nextLine();
-      
-      System.out.print("\nPlease enter the Policyholder's First Name: "); //getting the policyholder's first name
-      firstName = keyboard.nextLine();
-      
-      System.out.print("\nPlease enter the Policyholder's Last Name: "); //getting the policyholder's last name
-      lastName = keyboard.nextLine();
-
-      System.out.print("\nPlease enter the Policyholder's Age: "); //getting the policyholder's age
-      age = keyboard.nextDouble();
-      
-      keyboard.nextLine(); //clearing the enter
-      
-      System.out.print("\nPlease enter the Policyholder's Smoking Status (smoker/non-smoker): "); //getting the policyholder's smoking status
-      smokingStatus = keyboard.nextLine();
-      
-      System.out.print("\nPlease enter the Policyholder's Height (in inches): "); //getting the policyholder's height
-      height  = keyboard.nextDouble();
-      
-      System.out.print("\nPlease enter the Policyholder's Weight (in pounds): "); //getting the policyholder's weight
-      weight  = keyboard.nextDouble();
       
       Policy insurancePolicy = new Policy(policyNumber, provider, firstName, lastName, smokingStatus, age, height, weight); //creating Policy object
       
@@ -58,6 +69,6 @@ public class Project_anya_vourakis
       System.out.printf("\nPolicyholder's Weight: %.1f pounds", insurancePolicy.getWeight());
       System.out.printf("\nPolicyholder's BMI: %.2f", insurancePolicy.getBmi());
       System.out.printf("\nPolicy Price: $%.2f", insurancePolicy.getPrice());
-      
+      */
    }
 }
