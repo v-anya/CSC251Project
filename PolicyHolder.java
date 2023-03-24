@@ -37,6 +37,21 @@ public class PolicyHolder()
       weight = pounds;
    }
    
+   /**toString method
+   @return a String with the policyholder's first name, last name, smoking status, age, height and weight*/
+   
+   public String toString()
+   {
+      //create string describing the object
+      String text = "Policyholder's First Name: " + firstName +
+                    "\nPolicyholder's Last Name: " + lastName +
+                    "\nPolicyholder's Age: " + age +
+                    "\nPolicyholder's Smoking Status (Y/N): " + smokingStatus +
+                    "\nPolicyholder's Height: " + height +
+                    "\nPolicyholder's Weight: " + weight +
+                    "\nPolicyholder's BMI: " + getBmi();
+   }
+   
    /**The setFirstName method assigns a value to the firstName variable
    @param name the value sent to become the policy holder's first name*/
   
