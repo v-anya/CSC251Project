@@ -29,6 +29,18 @@ public class Policy
       
   }
   
+  /**toString method
+  @return A string with the policy information*/
+  
+  public String toString()
+  {
+      //string describing the object
+      String text = "Policy Number: " + policyNumber +
+                    "\nProvider Name: " + provider;
+                    
+      return text; //return string
+  }
+  
   /**The setPolicyNumber method assigns a value to the policyNumber variable
   @param number the value sent to become the policy number*/
   
