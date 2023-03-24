@@ -2,6 +2,8 @@ public class Policy
 {
    /**The policy class processes insurance information for one person*/
    
+  private static int count = 0; //counter for policy classes created
+  
   private String policyNumber, //policy number
                  provider;     //name of the provider
                  
@@ -13,6 +15,8 @@ public class Policy
       //initializing variables
       policyNumber = "0";
       provider = "0";
+      
+      count++; //update count
  
   }
   
@@ -27,6 +31,14 @@ public class Policy
       policyNumber = number;
       provider = name;
       
+      count++; //update count      
+  }
+  
+  /**The getCount method will return the number of instance of the class
+  @return number of Policies*/
+  public int getCount()
+  {
+      return count;
   }
   
   /**toString method
