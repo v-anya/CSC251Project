@@ -1,4 +1,4 @@
-public class PolicyHolder()
+public class PolicyHolder
 {
    private String firstName,    //policy holder's first name
                   lastName,     // policy holder's last name
@@ -37,19 +37,30 @@ public class PolicyHolder()
       weight = pounds;
    }
    
+   /**Copy Constructor
+   @param object a policyholder object to copy*/
+   
+   public PolicyHolder(PolicyHolder object)
+   {
+      firstName = object.getFirstName();           // copying values to
+      lastName = object.getLastName();            //  the variables
+      smokingStatus = object.getSmokingStatus();
+      age = object.getAge();
+      height = object.getHeight();
+      weight = object.getWeight();
+   }
+   
    /**toString method
    @return a String with the policyholder's first name, last name, smoking status, age, height and weight*/
    
    public String toString()
    {
       //create string describing the object
-      String text = "Policyholder's First Name: " + firstName +
-                    "\nPolicyholder's Last Name: " + lastName +
-                    "\nPolicyholder's Age: " + age +
-                    "\nPolicyholder's Smoking Status (Y/N): " + smokingStatus +
-                    "\nPolicyholder's Height: " + height +
-                    "\nPolicyholder's Weight: " + weight +
-                    "\nPolicyholder's BMI: " + getBmi();
+      String text = String.format("Policyholder's First Name: %s \nPolicyholder's Last Name: %s \nPolicyholder's Age: %.0f \nPolicyholder's Smoking Status (Y/N): %s \nPolicyholder's Height: %.1f inches \nPolicyholder's Weight: %.1f pounds \nPolicyholder's BMI: %.2f",
+                                   firstName, lastName, age, smokingStatus, height, weight, getBmi());
+      
+                    
+      return text; //return the formatted string
    }
    
    /**The setFirstName method assigns a value to the firstName variable
