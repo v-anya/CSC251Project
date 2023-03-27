@@ -31,9 +31,8 @@ public class Project_anya_vourakis
              height,        //policy holder's height in inches
              weight;        // policy holder's weight in pounds
              
-      //counters for smokers and non-smokers
-      int smokers = 0,
-          nonSmokers = 0; 
+      //counter for smokers
+      int smokers = 0; 
                
       while (fileReader.hasNext()) //loop while there is data to read
       {
@@ -52,8 +51,16 @@ public class Project_anya_vourakis
          if (fileReader.hasNext()) //making sure there are more lines before
             fileReader.nextLine(); //skip blank line
           
+         //create policy holder for the object
+         PolicyHolder holder = new PolicyHolder(firstName, lastName, smokingStatus, age, height, weight);
+         
+         //adjusting smoking counter
+         if (holder.getSmokingStatus().equalsIgnoreCase("smoker"))
+            smokers++;
+
+         
          //create policy object in the array with the information  
-         policyArray.add(new Policy(policyNumber, provider, firstName, lastName, smokingStatus, age, height, weight));
+         policyArray.add(new Policy(policyNumber, provider, holder));
       }
       
       
@@ -61,31 +68,19 @@ public class Project_anya_vourakis
       
       for (Policy insurancePolicy : policyArray)
       {
-         //displaying information using the object's methods
-         System.out.println("\nPolicy Number :" + insurancePolicy.getPolicyNumber());
-         System.out.println("Provider Name :" + insurancePolicy.getProvider());
-         System.out.println("Policyholder's First Name: " + insurancePolicy.getFirstName());
-         System.out.println("Policyholder's Last Name: " + insurancePolicy.getLastName());
-         System.out.printf("Policyholder's Age: %.0f", insurancePolicy.getAge());
-         System.out.println("\nPolicyholder's Smoking Status (smoker/non-smoker): " + insurancePolicy.getSmokingStatus());
-         System.out.printf("Policyholder's Height: %.1f inches", insurancePolicy.getHeight());
-         System.out.printf("\nPolicyholder's Weight: %.1f pounds", insurancePolicy.getWeight());
-         System.out.printf("\nPolicyholder's BMI: %.2f", insurancePolicy.getBmi());
-         System.out.printf("\nPolicy Price: $%.2f", insurancePolicy.getPrice());
+         //print information
+         System.out.println(insurancePolicy);
          //blank space before next set
          System.out.println();
          System.out.println();
          
-         //adjusting smoking counters
-         if (insurancePolicy.getSmokingStatus().equalsIgnoreCase("smoker"))
-            smokers += 1;
-         else
-            nonSmokers +=1;
+                  
       }          
       
-      //display final smokers/non-smokers count
-      System.out.println("The number of policies with a smoker is: " + smokers);
-      System.out.println("The number of policies with a non-smoker is: " + nonSmokers);
+      //display final count
+      System.out.println("There were " + policyArray.size() + " Policy objects created.");
+      System.out.println("\nThe number of policies with a smoker is: " + smokers);
+      System.out.println("The number of policies with a non-smoker is: " + (policyArray.size() - smokers));
       
       
       
