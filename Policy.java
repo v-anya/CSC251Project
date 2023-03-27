@@ -7,6 +7,8 @@ public class Policy
   private String policyNumber, //policy number
                  provider;     //name of the provider
                  
+  private PolicyHolder holder; //object for the policyholder
+                 
    
   /**Constructor*/
   
@@ -15,6 +17,7 @@ public class Policy
       //initializing variables
       policyNumber = "0";
       provider = "0";
+      holder = new PolicyHolder();
       
       count++; //update count
  
@@ -23,14 +26,15 @@ public class Policy
   
   /**Constructor
   @param number the value sent to become the policy number
-  @param name the value sent to become the name of the provider*/
+  @param name the value sent to become the name of the provider
+  @param client a PolicyHolder object*/
   
-  public Policy(String number, String name)
+  public Policy(String number, String name, PolicyHolder client)
   {
       //assigning values to the variables
       policyNumber = number;
       provider = name;
-      
+      holder = new PolicyHolder(client);
       count++; //update count      
   }
   
@@ -47,8 +51,8 @@ public class Policy
   public String toString()
   {
       //string describing the object
-      String text = "Policy Number: " + policyNumber +
-                    "\nProvider Name: " + provider;
+      String text = String.format("Policy Number: %s \nProvider Name: %s \n%s \nPolicy Price: $%.2f",
+                                   policyNumber, provider, holder, getPrice());
                     
       return text; //return string
   }
@@ -68,7 +72,14 @@ public class Policy
   {
      provider = name;
   } 
-   
+  
+  /**The setHolder methods stores a reference to a copy of the PolicyHolder object it receives
+  @param client the PolicyHolder object with the information*/
+  
+  public void setHolder(PolicyHolder client)
+  {
+      holder = new PolicyHolder(client);
+  } 
   
   /**The getPolicyNumber method returns the value of the policyNumber variable
   @return the policy number*/
@@ -84,6 +95,14 @@ public class Policy
   public String getProvider()
   {
      return provider;
+  }
+  
+  /**The getHolder method will return a reference to a copy of the policyholder objecy
+  @return reference to a copy of the holder*/
+  
+  public PolicyHolder getHolder()
+  {
+      return new PolicyHolder(holder); //return copy
   } 
    
   
@@ -102,14 +121,14 @@ public class Policy
       
       double price = BASE_PRICE; //starting price is set
       
-      if (age > AGE_LIMIT) // adding fee for old age
+      if (holder.getAge() > AGE_LIMIT) // adding fee for old age
          price += AGE_FEE;
       
-      if (smokingStatus.equals("smoker")) //adding fee for smoking
+      if (holder.getSmokingStatus().equals("smoker")) //adding fee for smoking
          price += SMOKING_FEE;
       
-      if (getBmi() > BMI_LIMIT) //adding fee for high BMI
-         price += ((getBmi() - BMI_LIMIT) * FEE_PER_BMI); //formula to calculate extra fee
+      if (holder.getBmi() > BMI_LIMIT) //adding fee for high BMI
+         price += ((holder.getBmi() - BMI_LIMIT) * FEE_PER_BMI); //formula to calculate extra fee
          
       return price;
          
